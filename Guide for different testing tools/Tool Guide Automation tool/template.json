@@ -1,0 +1,7 @@
+{
+  "Overview": "Provide a brief explanation like im a novice in one or two sentences of what {{TOOL_NAME}} penetration testing tool is.",
+  "Purpose": "Explain like im a novice in one or two sentences the primary use cases for {{TOOL_NAME}} penetration testing tool.",
+  "Results": "Explain like im a novice in one or two sentences expected output and key indicators, linking to real-world examples or learning for {{TOOL_NAME}} penetration testing tool.",
+  "Troubleshooting": "Common problems and their solutions for {{TOOL_NAME}} penetration testing tool.",
+  "Credit": "Give me the name of the person, or the team who designed and built {{TOOL_NAME}}l on GitHub or otherwise"
+  }
