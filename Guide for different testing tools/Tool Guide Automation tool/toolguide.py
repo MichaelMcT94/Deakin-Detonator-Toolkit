@@ -9,7 +9,6 @@ from groq import Groq
 # Configuration constants.
 # -------------------------
 
-# Get the folder where this script resides
 script_dir = os.path.dirname(__file__)
 
 # Full paths for template and output
@@ -57,10 +56,8 @@ with open(TEMPLATE_JSON, "r") as templateFile:
 # -------------------------
 
 while True:
-    # Check if TOOL_NAME is set in environment (for GitHub Actions)
     toolName = os.getenv("TOOL_NAME")
 
-    # If not set, fallback to interactive input
     if not toolName:
         toolName = input("\nEnter the tool name (or type 'exit' to quit): ").strip()
 
@@ -72,9 +69,7 @@ while True:
     # Generate AI content.
     # -------------------------
 
-    context = {
-        "TOOL_NAME": toolName
-    }
+    context = {"TOOL_NAME": toolName}
 
     print(f"\nGenerating AI text for '{toolName}'...\n")
 
@@ -105,7 +100,12 @@ while True:
 
     print(f"\nAll done! Tool guide saved to: {outputFile}")
     print("\n----------------------------------------------")
-    
-    # Clear toolName so loop works for next run
-    if not os.getenv("TOOL_NAME"):
-        print("Ready for another tool!\n")
+
+    # -------------------------
+    # Break if TOOL_NAME came from environment
+    # -------------------------
+    if os.getenv("TOOL_NAME"):
+        break
+
+    # Clear toolName so loop works for next run interactively
+    print("Ready for another tool!\n")
