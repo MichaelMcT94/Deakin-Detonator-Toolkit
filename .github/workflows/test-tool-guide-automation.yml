@@ -34,4 +34,5 @@ jobs:
       - name: Run Tool Guide Automation tool
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python "Guide for different testing tools/Tool Guide Automation tool/main.py"
+        run: python "Guide for different testing tools/Tool Guide Automation tool/toolguide.py"
+
