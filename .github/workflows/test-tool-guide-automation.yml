@@ -1,4 +1,4 @@
-name: Run Tool Guide Automation
+name: Test Tool Guide Automation
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           ls "Guide for different testing tools"
           ls "Guide for different testing tools/Tool Guide Automation tool"
 
-      - name: Run Tool Guide Automation tool
+      - name: Run Tool Guide Automation tool (single run)
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           TOOL_NAME: "Test_Tool"
