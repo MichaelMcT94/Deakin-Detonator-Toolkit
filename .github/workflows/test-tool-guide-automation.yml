@@ -1,0 +1,32 @@
+name: Test Tool Guide Automation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - tools-guide
+
+jobs:
+  run-tool:
+    runs-on: ubuntu-latest
+
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install groq docxtpl
+
+      - name: Run tool
+        run: |
+          cd "Tool Guide Automation tool"
+          python main.py
