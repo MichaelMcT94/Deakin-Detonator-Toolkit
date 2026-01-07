@@ -57,9 +57,12 @@ with open(TEMPLATE_JSON, "r") as templateFile:
 # -------------------------
 
 while True:
-    toolName = input(
-        "\nEnter the tool name (or type 'exit' to quit): "
-    ).strip()
+    # Check if TOOL_NAME is set in environment (for GitHub Actions)
+    toolName = os.getenv("TOOL_NAME")
+
+    # If not set, fallback to interactive input
+    if not toolName:
+        toolName = input("\nEnter the tool name (or type 'exit' to quit): ").strip()
 
     if toolName.lower() == "exit":
         print("Goodbye!")
@@ -82,3 +85,27 @@ while True:
 
     # -------------------------
     # Render Word template.
+    # -------------------------
+
+    document = DocxTemplate(TEMPLATE_FILE)
+    document.render(context)
+
+    # -------------------------
+    # Save output file.
+    # -------------------------
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    outputFile = os.path.join(
+        OUTPUT_DIR,
+        f"{toolName.replace(' ', '_')}_Tool_Guide.docx"
+    )
+
+    document.save(outputFile)
+
+    print(f"\nAll done! Tool guide saved to: {outputFile}")
+    print("\n----------------------------------------------")
+    
+    # Clear toolName so loop works for next run
+    if not os.getenv("TOOL_NAME"):
+        print("Ready for another tool!\n")
