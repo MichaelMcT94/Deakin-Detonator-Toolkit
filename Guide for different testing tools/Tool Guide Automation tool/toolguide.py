@@ -5,7 +5,7 @@ from docxtpl import DocxTemplate
 from groq import Groq
 
 # -------------------------
-# ASCII Banner
+# Banner
 # -------------------------
 ASCII_BANNER = r"""
  _____           _   _____       _     _        _____                           _             
@@ -27,7 +27,7 @@ TEMPLATE_FILE = "template.docx"
 OUTPUT_DIR = "/app/output"
 
 # -------------------------
-# Helper: Get Groq client (env → prompt → fail cleanly)
+# Get Groq client
 # -------------------------
 def get_groq_client():
     groqApiKey = os.environ.get("GROQ_API_KEY")
